@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  memoir-pypy:
+    build:
+      context: .
+      args:
+      - PYTHON_IMAGE=${PYPY_IMAGE_NAME}
+      - PYTHON_IMAGE_VERSION=${PYPY_IMAGE_VERSION}
+    image: lycantropos/memoir-pypy:0.0.0
+    volumes:
+      - ./memoir/:/opt/memoir/memoir/
+      - ./tests/:/opt/memoir/tests/
+      - ./README.md:/opt/memoir/README.md
+      - ./setup.py:/opt/memoir/setup.py
+      - ./setup.cfg:/opt/memoir/setup.cfg
+    entrypoint: pypy3
+    command: setup.py test
