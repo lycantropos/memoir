@@ -56,6 +56,47 @@ Install:
   pypy setup.py install
   ```
 
+Usage
+-----
+
+Let's suppose we are defining a class 
+with expensive read-only [`property`](https://docs.python.org/library/functions.html#property) 
+which can be calculated once and reused afterwards. 
+
+Common way of solving this is by introducing "private" attribute like 
+```python
+class Example:
+    @property
+    def expensive_property(self):
+        try:
+            result = self._expensive_property
+        except AttributeError:
+            result = do_expensive_calculations(...)
+            self._expensive_property = result
+        return result
+```
+this works fine, but
+
+- mutates original instance by introducing a new attribute,
+- requires a lot of boilerplate each time.
+
+If we have
+
+- [weakly-referencable](https://docs.python.org/library/weakref.html) 
+(which is by default if not suppressed explicitly, 
+e.g. by using [`__slots__` class variable](https://docs.python.org/reference/datamodel.html#slots)),
+- [hashable](https://docs.python.org/glossary.html#term-hashable)
+
+class we can implement it like
+```python
+from memoir import cached
+
+class Example:
+    @cached.property_
+    def expensive_property(self):
+        return do_expensive_calculations(...)
+```
+
 Development
 -----------
 
