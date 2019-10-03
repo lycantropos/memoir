@@ -61,24 +61,25 @@ Usage
 
 Let's suppose we are defining a class 
 with expensive read-only [`property`](https://docs.python.org/library/functions.html#property) 
-which can be calculated once and reused afterwards. 
+which can be calculated once and reused afterwards.
 
-Common way of solving this is by introducing "private" attribute like 
+Common way of solving this is by introducing private'ish attribute like
 ```python
-class Example:
-    @property
-    def expensive_property(self):
-        try:
-            result = self._expensive_property
-        except AttributeError:
-            result = do_expensive_calculations(...)
-            self._expensive_property = result
-        return result
-```
-this works fine, but
+>>> class Example:
+...     @property
+...     def expensive_property(self):
+...         try:
+...             result = self._expensive_property
+...         except AttributeError:
+...             result = do_expensive_calculations(...)
+...             self._expensive_property = result
+...         return result
 
-- mutates original instance by introducing a new attribute,
-- requires a lot of boilerplate each time.
+```
+this works fine, but each such property
+
+- introduces an extra attribute,
+- requires a lot of boilerplate code.
 
 If we have
 
@@ -89,12 +90,12 @@ e.g. by using [`__slots__` class variable](https://docs.python.org/reference/dat
 
 class we can implement it like
 ```python
-from memoir import cached
+>>> from memoir import cached
+>>> class Example:
+...     @cached.property_
+...     def expensive_property(self):
+...         return do_expensive_calculations(...)
 
-class Example:
-    @cached.property_
-    def expensive_property(self):
-        return do_expensive_calculations(...)
 ```
 
 Development

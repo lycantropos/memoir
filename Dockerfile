@@ -3,12 +3,15 @@ ARG PYTHON_IMAGE_VERSION
 
 FROM ${PYTHON_IMAGE}:${PYTHON_IMAGE_VERSION}
 
+RUN pip install --upgrade pip setuptools
+
 WORKDIR /opt/memoir
 
 COPY memoir/ memoir/
 COPY tests/ tests/
 COPY README.md .
+COPY requirements-tests.txt .
 COPY setup.py .
 COPY setup.cfg .
 
-RUN pip install -e .
+RUN pip install -r requirements-tests.txt

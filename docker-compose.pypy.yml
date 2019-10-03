@@ -12,7 +12,7 @@ services:
       - ./memoir/:/opt/memoir/memoir/
       - ./tests/:/opt/memoir/tests/
       - ./README.md:/opt/memoir/README.md
+      - ./requirements-tests.txt:/opt/paradigm/requirements-tests.txt
       - ./setup.py:/opt/memoir/setup.py
       - ./setup.cfg:/opt/memoir/setup.cfg
-    entrypoint: pypy3
-    command: setup.py test
+    entrypoint: pytest
