@@ -1,5 +1,5 @@
 memoir
-===========
+======
 
 [![](https://travis-ci.org/lycantropos/memoir.svg?branch=master)](https://travis-ci.org/lycantropos/memoir "Travis CI")
 [![](https://ci.appveyor.com/api/projects/status/github/lycantropos/memoir?branch=master&svg=true)](https://ci.appveyor.com/project/lycantropos/memoir "AppVeyor")
