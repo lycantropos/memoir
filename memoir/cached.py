@@ -64,5 +64,21 @@ def property_(getter: Map[Domain, Range]) -> property:
     and reuses result afterwards.
 
     Class instances should be hashable and weak referencable.
+
+    >>> import math
+    >>> from memoir import cached
+    >>> class Circle:
+    ...     def __init__(self, radius: float) -> None:
+    ...         self.radius = radius
+    ...     @cached.property_
+    ...     def area(self) -> float:
+    ...         print('calculating area')
+    ...         return math.pi * self.radius ** 2
+    >>> circle = Circle(10)
+    >>> circle.area
+    calculating area
+    314.1592653589793
+    >>> circle.area
+    314.1592653589793
     """
     return property(map_(WeakKeyDictionary())(getter))

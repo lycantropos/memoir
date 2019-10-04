@@ -15,7 +15,7 @@ setup(name='memoir',
       description=memoir.__doc__,
       long_description=Path('README.md').read_text(encoding='utf-8'),
       long_description_content_type='text/markdown',
-      license='MIT',
+      license='MIT License',
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',

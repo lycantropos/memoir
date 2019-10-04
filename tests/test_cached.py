@@ -1,8 +1,8 @@
 from itertools import repeat
-from types import MappingProxyType
 from typing import (Any,
-                    Dict,
                     Hashable,
+                    Mapping,
+                    MutableMapping,
                     Tuple)
 
 from hypothesis import given
@@ -12,13 +12,13 @@ from tests import strategies
 from tests.utils import create_unique_object
 
 
-@given(strategies.empty.dictionaries,
+@given(strategies.empty.immutable_mappings,
        strategies.unique_objects,
        strategies.positive_integers)
-def test_immutable_cache_map(cache: Dict[Hashable, Any],
-                             argument: Any,
-                             attempts_count: int) -> None:
-    wrapper = cached.map_(MappingProxyType(cache))
+def test_empty_immutable_cache_map(cache: Mapping[Hashable, Any],
+                                   argument: Hashable,
+                                   attempts_count: int) -> None:
+    wrapper = cached.map_(cache)
 
     result = wrapper(non_transparent_map)
     first_call_result = result(argument)
@@ -29,12 +29,12 @@ def test_immutable_cache_map(cache: Dict[Hashable, Any],
     assert not cache
 
 
-@given(strategies.empty.dictionaries,
+@given(strategies.empty.mutable_mappings,
        strategies.unique_objects,
        strategies.positive_integers)
-def test_mutable_cache_map(cache: Dict[Hashable, Any],
-                           argument: Any,
-                           attempts_count: int) -> None:
+def test_empty_mutable_cache_map(cache: MutableMapping[Hashable, Any],
+                                 argument: Hashable,
+                                 attempts_count: int) -> None:
     wrapper = cached.map_(cache)
 
     result = wrapper(non_transparent_map)
