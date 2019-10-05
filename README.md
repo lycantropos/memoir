@@ -1,8 +1,8 @@
 memoir
 ======
 
-[![](https://travis-ci.org/lycantropos/memoir.svg?branch=master)](https://travis-ci.org/lycantropos/memoir "Travis CI")
-[![](https://ci.appveyor.com/api/projects/status/github/lycantropos/memoir?branch=master&svg=true)](https://ci.appveyor.com/project/lycantropos/memoir "AppVeyor")
+[![](https://travis-ci.com/lycantropos/memoir.svg?branch=master)](https://travis-ci.com/lycantropos/memoir "Travis CI")
+[![](https://dev.azure.com/lycantropos/memoir/_apis/build/status/lycantropos.memoir?branchName=master)](https://dev.azure.com/lycantropos/memoir/_build/latest?branchName=master "Azure Pipelines")
 [![](https://codecov.io/gh/lycantropos/memoir/branch/master/graph/badge.svg)](https://codecov.io/gh/lycantropos/memoir "Codecov")
 [![](https://img.shields.io/github/license/lycantropos/memoir.svg)](https://github.com/lycantropos/memoir/blob/master/LICENSE "License")
 [![](https://badge.fury.io/py/memoir.svg)](https://badge.fury.io/py/memoir "PyPI")
