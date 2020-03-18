@@ -1,5 +1,4 @@
-sudo: false
-distro: trusty
+dist: xenial
 
 language: python
 
@@ -10,8 +9,7 @@ matrix:
     - python: 3.5
     - python: 3.6
     - python: 3.7
-      dist: xenial
-      sudo: true
+    - python: 3.8
 
 install:
   - python -m pip install --upgrade pip setuptools
@@ -24,3 +22,14 @@ script:
 
 after_success:
   - python -m codecov -f coverage.xml -X gcov
+
+deploy:
+  provider: pypi
+  on:
+    branch: master
+    python: 3.5
+  user: __token__
+  password:
+    secure: bSvn4ULr4VlCKGU1Z7PuIfaaa0ApeteUPBSsJ2/R2Vn1RQcrvsWmFWpOVsplIyEeZtcIJwHiyJvtL0NsgQpLaEuu8unh4xrp4jMBN5v2//OQbcdGejsRbNhrrb2U+Va3V7wnSJc3LlzqZhc6EnICDmqJXXgASZE8spZapYNXG0twbILKhbaKG0imOz+OuCWw/9oM7uG62CQdiZIiFu1OBx1gVwKqdj7QiT/SLUp+BlXgahUtGmACnrR10X/ALQhTW3kfqX03wn+hKKeqB0n+zreOFbR8eLRbnG90ZcF1aZkpBYsZ3KV1Ifk4QRC9xYWu9kwL0U8XjJnoGmZxbCYWmzPpjG9SL/MK1onAY1J1hQ847hqea3/a+Fr1j5xsPjHHMZPYYp1WfLdF0Xhi04eQ4p1K8v1MFvost7heEVqDkF5vn2niZA0UtqmIBbfjsdFBXhq9lF1X1L6pgW+DMEyg1T10ONqLE1dx2bodJf8P46k3dmi+wyjJyrlx4iNVs79kEP5d5/AiCUsWIthsdh8+O1KwMI8Mucq2csFM6QaLL84OMzOy07l5m6Nh++noGnryWMp56S5+G0Wow1xDRJb8jymlvx/J5FFhYqvir6+OEjvMmHQQwBxWJdaYveQ9JXz0TjJ3FK9LRIp7kwC8sTzmzBilHfRXkuCG0kyx69LlaVA=
+  distributions: sdist bdist_wheel
+  skip_existing: true

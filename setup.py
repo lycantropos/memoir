@@ -7,8 +7,6 @@ import memoir
 
 project_base_url = 'https://github.com/lycantropos/memoir/'
 
-tests_require = Path('requirements-tests.txt').read_text()
-
 setup(name='memoir',
       packages=find_packages(exclude=('tests', 'tests.*')),
       version=memoir.__version__,
@@ -23,6 +21,7 @@ setup(name='memoir',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',
           'Operating System :: POSIX',
@@ -33,5 +32,4 @@ setup(name='memoir',
       author_email='azatibrakov@gmail.com',
       url=project_base_url,
       download_url=project_base_url + 'archive/master.zip',
-      python_requires='>=3.5.3',
-      tests_require=tests_require)
+      python_requires='>=3.5.3')

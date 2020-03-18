@@ -7,11 +7,14 @@ RUN pip install --upgrade pip setuptools
 
 WORKDIR /opt/memoir
 
-COPY memoir/ memoir/
-COPY tests/ tests/
-COPY README.md .
-COPY requirements-tests.txt .
-COPY setup.py .
-COPY setup.cfg .
+COPY requirements.txt .
+RUN pip install --force-reinstall -r requirements.txt
 
+COPY requirements-tests.txt .
 RUN pip install --force-reinstall -r requirements-tests.txt
+
+COPY README.md .
+COPY pytest.ini .
+COPY setup.py .
+COPY memoir memoir/
+COPY tests/ tests/

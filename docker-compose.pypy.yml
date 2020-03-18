@@ -5,14 +5,15 @@ services:
     build:
       context: .
       args:
-      - PYTHON_IMAGE=${PYPY_IMAGE_NAME}
-      - PYTHON_IMAGE_VERSION=${PYPY_IMAGE_VERSION}
-    image: lycantropos/memoir-pypy:0.0.2
+        - PYTHON_IMAGE=${PYPY_IMAGE_NAME}
+        - PYTHON_IMAGE_VERSION=${PYPY_IMAGE_VERSION}
+    image: lycantropos/memoir-pypy:0.0.3
     volumes:
       - ./memoir/:/opt/memoir/memoir/
       - ./tests/:/opt/memoir/tests/
       - ./README.md:/opt/memoir/README.md
-      - ./requirements-tests.txt:/opt/paradigm/requirements-tests.txt
+      - ./requirements.txt:/opt/memoir/requirements.txt
+      - ./requirements-tests.txt:/opt/memoir/requirements-tests.txt
       - ./setup.py:/opt/memoir/setup.py
-      - ./setup.cfg:/opt/memoir/setup.cfg
+      - ./pytest.ini:/opt/memoir/pytest.ini
     entrypoint: pytest

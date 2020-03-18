@@ -1,3 +1,3 @@
-"""Decorators for adding memoization."""
+"""Memoization support."""
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
